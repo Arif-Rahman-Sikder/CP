@@ -1,0 +1,388 @@
+classes and objects???
+//in this programme we are learning classes and objects
+//  class class_name{  //this is the syntax of class
+//  }
+#include <iostream>
+using namespace std;
+
+class car
+{
+    char colour[10];
+
+public:
+    int speed;
+
+public:
+    void getdata(int distance, int fuel)
+    {
+        cout << "the car has covered " << distance << " Km and has consumed" << fuel << "L fuel" << endl;
+    }
+
+    void mileage(float distance, float fuel);
+
+    void carspeed()
+    {
+        cout << "the car speed is" << speed << endl;
+    }
+
+} audi;
+
+void car::mileage(float d, float f)
+{
+    float carmileage = d / f;
+    cout << "the car mileage is " << carmileage << endl;
+}
+
+int main()
+{
+    car swift;
+    // swift.getdata(130,7);
+    // audi.getdata(150,25);
+    // swift.mileage(130,7);
+    swift.speed = 50;
+    swift.carspeed();
+
+    return 0;
+}
+
+/////////consructor
+
+//constructor name and class name are same
+//constructor has no return type
+//parameters can be used on other class memeber
+//cannot do inheritance
+//constructor needs to be declared publicly or else it wont work
+#include<iostream>
+using namespace std;
+class constructorDemo{
+    public:
+    constructorDemo(){ //this is a default constructor without parameters
+    //parameter constructor are like constructorDemo(int a,int b)
+        cout<<"this is from a constructor";
+    }
+
+};
+
+int main(){
+    constructorDemo obj;
+
+    return 0;
+}
+
+/////destructors
+
+#include<iostream>
+using namespace std;
+class helloworld{
+    public:
+    //constructor
+    helloworld(){
+        cout<<"constructor is called"<<endl;
+
+    }
+    //descructor
+    ~helloworld(){
+        cout<<"destructor is called"<<endl;
+    }
+    //member function
+    void display(){  //void is return type
+    cout<<"hello world from member function"<<endl;
+
+
+    }
+};
+
+int main(){
+
+    helloworld obj; //object created
+    obj.display();
+    return 0;
+}
+
+//fried class and function
+
+#include<iostream>
+using namespace std;
+class xyz{
+    private:
+    char ch='a';
+    int num=11;
+    public:
+    friend class abc;
+};
+//global function
+class abc{
+    public:
+    void disp(xyz obj){
+cout<<obj.ch<<endl;
+cout<<obj.num<<endl;
+    }
+};
+
+int main(){
+    abc obj;
+    xyz obj2;
+    obj.disp(obj2);
+    
+    return 0;
+}
+
+//inheritance in OOP
+//saves time and increase efficiency
+
+#include<iostream>
+using namespace std;
+class teacher{
+    public:
+    teacher(){
+        cout<<"hey i am a teacher"<<endl;
+
+    }
+    string collegename="youtube college";
+};
+class mathteacher: public teacher{
+    public:
+    mathteacher(){
+        cout<<"I am a math teacher"<<endl;
+
+    }
+};
+int main(){
+
+    mathteacher obj;
+    cout<<"college name is:"<<obj.collegename<<endl;
+    return 0;
+}
+
+
+//hierarchial inheritance
+
+#include <iostream>
+using namespace std;
+//hierarchical inheritance
+
+//b and c inherits class a (two class inherites one)
+
+class a
+{
+public:
+    a()
+    {
+        cout << "constructor of a" << endl;
+    }
+};
+
+class b:public a
+{
+public:
+    b()
+    {
+        cout << "constructor of b" << endl;
+    }
+};
+class c : public a
+{
+public:
+    c()
+    {
+        cout << "constructor of c" << endl;
+    }
+};
+
+int main()
+{
+c obj;
+
+    return 0;
+}
+//hybrid inheritance>>>combination of several inheritance
+
+
+
+//multiple inheritance
+
+#include <iostream>
+using namespace std;
+//multiple inheritance
+
+//c inherits a and b both in mutiple inheritance
+
+class a
+{
+public:
+    a()
+    {
+        cout << "constructor of a" << endl;
+    }
+};
+
+class b
+{
+public:
+    b()
+    {
+        cout << "constructor of b" << endl;
+    }
+};
+class c : public a ,public b
+{
+public:
+    c()
+    {
+        cout << "constructor of c" << endl;
+    }
+};
+
+int main()
+{
+c obj;
+    return 0;
+}
+
+////parameterized
+
+
+#include<iostream>
+using namespace std;
+class Add{
+    public:
+    Add(int num1, int num2){ //parameterized constructors
+        cout<<(num1+num2)<<endl;
+    }
+};
+
+int main(){
+    Add obj(10,20);
+    
+    return 0;
+}
+
+//polimorphism part1(function overloading)
+
+/*polimorphism is a feature of OOPs that allowss the object 
+to behave differently in different in different conditions 
+1.compile time polimorphism -this is also known as static or early binding
+*/
+
+#include<iostream>
+using namespace std;
+class add{
+    public:
+    int sum(int num1,int num2){
+        return num1+num2;
+    }
+    int sum (int num1,int num2,int num3){
+        return num1+num2;
+    }
+};
+
+int main(){
+    add obj;
+    cout<<"output:"<<obj.sum(10,20)<<endl;//output depends on the number of parameters
+    cout<<"output:"<<obj.sum(10,20,30)<<endl;
+    return 0;
+}
+
+//polimorphism part 2--(function overriding)
+// we can also say runtime polimorphism 
+//function is same as parent and child
+//we will kow rhat the function will call from parent or child class after running the programme
+//hence it is known as runtime polimorphism
+#include<iostream>
+using namespace std;
+
+
+    class a{
+public :
+void display (){
+    cout<<"this is super/parentclass function"<<endl;
+}
+    };
+     class b:public a{
+public :
+void display (){
+    cout<<"this is baseclass function"<<endl;
+}
+     };
+int main(){
+
+a obj;
+obj.display();
+b obj2;
+obj2.display();
+
+
+    return 0;
+    
+}
+
+#include <iostream>
+using namespace std;
+//single inheritance--previous code
+//multi-level inheritance-what i have written
+//c  inherits  b  and  b inherits a
+
+class a
+{
+public:
+    a()
+    {
+        cout << "constructor of a" << endl;
+    }
+};
+
+class b:public a
+{
+public:
+    b()
+    {
+        cout << "constructor of b" << endl;
+    }
+};
+class c : public b
+{
+public:
+    c()
+    {
+        cout << "constructor of c" << endl;
+    }
+};
+
+int main()
+{
+c obj;
+    return 0;
+}
+
+//virtual function
+
+#include<iostream>
+using namespace std;
+class base{
+    public:
+    virtual void print (){
+        cout<<"i am from base class"<<endl;
+
+    }
+    void show(){
+        cout<<"i am form base class"<<endl;
+    }
+};
+class derived:public base{
+    public:
+    void print (){
+        cout<<"i am from derived class"<<endl;
+    }
+    void show(){
+        cout<<"i am from derived class"<<endl;
+    }
+};
+int main(){
+    base* bptr;
+    derived d;
+    bptr = &d;
+    bptr->print();
+    bptr->show();
+    return 0;
+}
+
